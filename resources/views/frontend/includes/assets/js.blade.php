@@ -22,11 +22,11 @@
 <script src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
 <!-- Scripts.js -->
 <script src="{{ asset('js/scripts.js') }}"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ajaxify/7.1.1/ajaxify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ajaxify/7.1.1/ajaxify.min.js"></script>
 
 
 <script>
 $(document).ready(function(){
 jQuery('#app').ajaxify({"inline" : true,});});
 
-</script>  -->
+</script> 
