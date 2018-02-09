@@ -27,6 +27,6 @@
 
 <script>
 $(document).ready(function(){
-jQuery('#app').ajaxify({"inline" : true,});});
+jQuery('#app').ajaxify();});
 
 </script> 
