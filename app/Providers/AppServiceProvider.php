@@ -5,7 +5,7 @@ namespace App\Providers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\URL;
 /**
  * Class AppServiceProvider.
  */
@@ -18,7 +18,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       
+       // Force SSL in heroku
+        if ($this->app->environment() == 'heroku') {
+            URL::forceScheme('https');
+        }
         /*
          * Application locale defaults for various components
          *
