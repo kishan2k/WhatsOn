@@ -1,21 +1,21 @@
-<?php 
+<?php
 
-
-namespace App\Http\Controllers\Controller;
-
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
-
-class EventsController extends Controller 
+use Illuminate\Support\Facades\DB;
+class EventsController extends Controller
 {
-
-  /**
+    /**
    * Display a listing of the resource.
    *
    * @return Response
    */
   public function index()
   {
-    
+    $events = DB::table('events')->get()->toArray();
+      return $events;
+    //return view('frontend.events.index', compact('events'));
   }
 
   /**
@@ -46,7 +46,9 @@ class EventsController extends Controller
    */
   public function show($id)
   {
-    
+    $event = DB::table('events')->where('id', $id)->first();
+    //dd($event);
+    return view('frontend.events.index', compact('event'));
   }
 
   /**
@@ -81,7 +83,4 @@ class EventsController extends Controller
   {
     
   }
-  
 }
-
-?>

@@ -1,11 +1,10 @@
 <?php 
 
-
-namespace App\Http\Controllers\Controller;
+namespace App\Http\Controllers\Shared;
 
 use Illuminate\Http\Request;
 
-class EventsController extends Controller 
+class CategoryController extends Controller 
 {
 
   /**
