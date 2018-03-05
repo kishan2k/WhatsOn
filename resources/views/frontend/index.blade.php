@@ -8,11 +8,13 @@
 				<div class="container">
 					<h1>Discover Coventry</h1>
 					<p class="lead">Find Events in your area.</p>
-					<form>
+
+					<form action="{{url()->full()}}/search" method="GET" role="search">
+
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="form-group">
-									<input type="text" placeholder="What are you looking for ?">
+									<input name="q" type="text" placeholder="What are you looking for ?">
 								</div> <!-- end .form-group -->
 							</div> <!-- end .col-sm-4 -->
 							<div class="col-sm-4">
