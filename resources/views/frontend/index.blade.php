@@ -9,12 +9,12 @@
 					<h1>Discover Coventry</h1>
 					<p class="lead">Find Events in your area.</p>
 
-					<form action="{{url()->full()}}/search" method="GET" role="search">
-
+					<form action="{{url()->full()}}/search" method="get" role="search">
+					{!! csrf_field() !!}
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="form-group">
-									<input name="q" type="text" placeholder="What are you looking for ?">
+									<input name="q" id="q" type="text" placeholder="What are you looking for ?">
 								</div> <!-- end .form-group -->
 							</div> <!-- end .col-sm-4 -->
 							<div class="col-sm-4">

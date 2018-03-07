@@ -1,8 +1,9 @@
 <header class="header {{ Request::path() == '/' ? 'fixed' : '' }} clearfix">
 			<div class="left">
 				<div class="logo"><a href="{{ route('frontend.index') }}"><img src="{{ asset('images/logo.png') }}" alt="{{ app_name() }}" class="img-responsive"></a></div> <!-- end .logo -->
-				<form class="header-search">
-					<input type="text" placeholder="I’m searching for ...">
+				<form class="header-search" action="{{url('/search')}}" method="get" role="search">
+				{{ csrf_field() }}
+					<input type="q"  name="q" id="q" placeholder="I’m searching for ...">
 					<button type="submit"><i class="pe-7s-search"></i></button>
 				</form>
 			</div> <!-- end .left -->

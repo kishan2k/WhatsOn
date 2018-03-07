@@ -14,6 +14,8 @@ class Events extends Model
 
     use SoftDeletes;
     use Searchable;
+
+
     protected $dates = ['deleted_at'];
 
     public function addCategoryID()

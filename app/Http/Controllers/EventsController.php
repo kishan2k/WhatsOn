@@ -16,9 +16,16 @@ class EventsController extends Controller
    */
   public function index()
   {
-    $events = DB::table('events')->get()->toArray();
-      return $events;
-    //return view('frontend.events.index', compact('events'));
+    $events = Events::get();
+ //   return $events;
+    
+    
+    // dd($events);
+    if (count ( $events ) > 0)
+        return view ( 'frontend.events.index' )->withDetails ( $events );
+    else
+        return view ( 'frontend.events.index' )->withMessage ( 'No Details found. Try to  again !' );
+    
   }
 
   /**
@@ -49,28 +56,42 @@ class EventsController extends Controller
    */
   public function show($id)
   {
-    $event = DB::table('events')->where('id', $id)->first();
+    $event = Events::find($id);
     //dd($event);
-    return view('frontend.events.index', compact('event'));
+    return view('frontend.events.show', compact('event'));
   }
 
 /**
    * Search the specified resource.
    *
-   * @param  int  $id
+   * @param  $id
    * @return Response
    */
-  public function search(Request $request)
-  {
-    $q = Input::get ( 'q' );
-    $events = Events::search($q)->get();
-    if (count ( $events ) > 0)
-        return view ( 'frontend.events.search' )->withDetails ( $events )->withQuery ( $q );
-    else
-        return view ( 'frontend.events.search' )->withMessage ( 'No Details found. Try to search again !' );
-    
-    
-      
+  public function search()
+  {    
+        // First we define the error message we are going to show if no keywords
+        // existed or if no results found.
+        $error = ['error' => 'No results found, please try with different keywords.'];
+
+        $q = \Request::get('q');
+        //dd($data);
+
+        // Making sure the user entered a keyword.
+        if($q) {
+
+            // Using the Laravel Scout syntax to search the products table.
+            $events = Events::where('name','like','%'.$q.'%')->orderBy('name')->get();
+
+            // If there are results return them, if none, return the error message.
+            //$events->count() ? $events : $error;
+
+            //dd($events);
+
+            return view('frontend.events.search', compact('events', 'q'));
+        }
+
+        // Return the error message if no keywords existed
+        //return $error;
   }
 
 

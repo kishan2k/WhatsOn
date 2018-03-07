@@ -4,91 +4,115 @@
 
 @section('content')
 
-<div class="container">
-    @if(isset($details))
-        <p> The Search results for your query <b> {{ $query }} </b> are :</p>
-    <h2>Sample User details</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($details as $event)
-            <tr>
-                <td>{{$event->name}}</td>
-                <td>{{$event->slug}}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    @endif
-</div>
+    @if(isset($events))
 
-
-	<div class="page-header">
-			<div class="container">
-				<div class="breadcrumbs">
-					<ul class="list-unstyled">
-						<li><a href="index.html">Home</a></li>
-						<li>Event</li>
-					</ul>
-				</div> <!-- end .breadcrumbs -->
-			</div> <!-- end .container -->
-		</div> <!-- end .page-header -->
-
-		<div class="page-title" style="background-image: url('images/background14.jpg');">
+		<div class="page-title" style="">
 			<div class="inner">
-				<h2>Articles & Tips </h2>
-				<p>Browse the latest articles and tips from our blog.</p>
+				<h2>Your Search Results For "{{ $q }}"									
+				</h2>
+
 			</div> <!-- end .inner -->
 		</div> <!-- end .page-title -->
 
+		
+
+		@endif
 		<div class="section boxed-section light">
 			<div class="inner">
 				<div class="container">
-					<div class="box transparent blog-grid">					
+					<div class="box transparent">
 						<div class="row">
-                        @foreach($details as $event)
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="images/blog-post05.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="images/blog-author04.jpg" alt="author"></div>
-									<div class="content">
-										<p>By {{$event->source}}</p>
-										<h3><a href="#">{{$event->name}}</a></h3>
-										<div class="meta">July 09, 2016 - <a href="#">Travelling</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-                            </div> <!-- end .col-md-4 -->
-                        @endforeach
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post gallery">
-									<div class="blog-gallery">
-										<div><img src="images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-										<div><img src="images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-										<div><img src="images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-									</div> <!-- end .blog-gallery -->
-									<div class="overlay"></div>
-									<div class="avatar"><img src="images/blog-author02.jpg" alt="author"></div>
-									<div class="type"><img src="images/blog-category-gallery.png" alt="gallery"></div>
-									<div class="content">
-										<p>By Nam Jacinia</p>
-										<h3><a href="#">Central Park Bike Rentals</a></h3>
-										<div class="meta">July 07, 2016 - <a href="#">Sales</a> , <a href="#">Tips</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->													
+							<div class="col-md-4">
+								<div class="shop-sidebar">
+									<div class="sidebar-widget">
+										<select class="selectpicker" data-live-search="true">
+											<option>Default sorting</option>
+											<option>High to Low</option>
+										</select>
+									</div> <!-- end .sidebar-widget -->
+									<div class="sidebar-widget">
+										<h5>Search Products</h5>
+										<form class="searchform">
+											<input type="text" placeholder="Type here ...">
+											<button><i class="pe-7s-search"></i></button>
+										</form>
+									</div> <!-- end .sidebar-widget -->
+									<div class="sidebar-widget">
+										<h5>Product Categories</h5>
+										<div class="categories">
+											<a href="#" class="active">All<i class="pe-7s-right-arrow"></i></a>
+											<a href="#">Food & Drink<i class="pe-7s-right-arrow"></i></a>
+											<a href="#">Entertainment<i class="pe-7s-right-arrow"></i></a>
+											<a href="#">Hotel<i class="pe-7s-right-arrow"></i></a>
+											<a href="#">Outdoor<i class="pe-7s-right-arrow"></i></a>
+											<a href="#">Nightlife<i class="pe-7s-right-arrow"></i></a>
+											<a href="#">Visit<i class="pe-7s-right-arrow"></i></a>
+											<a href="#">Shop<i class="pe-7s-right-arrow"></i></a>
+										</div>
+									</div> <!-- end .sidebar-widget -->
+									<div class="sidebar-widget text-center">
+										<h5>Filter By Price</h5>
+										<div class="price-slider"><div id="price-slider"></div></div>
+										<div class="price-slider-value">Price:<span class="price">$<span id="price-min"></span></span>—<span class="price">$<span id="price-max"></span></span></div>
+										<a href="#" class="button">Filter</a>
+									</div> <!-- end .sidebar-widget -->
+									<div class="sidebar-widget">
+										<h5>Feature Products</h5>
+										<div class="featured-product clearfix">
+											<a href="#"><img src="images/featured-product01.jpg" alt="image"></a>
+											<div class="content">
+												<p class="title"><a href="#">Sweet Cupcakes</a></p>
+												<p class="price">$9.00</p>
+											</div> <!-- end .content -->
+										</div> <!-- end .featured-product -->
+										<div class="featured-product clearfix">
+											<a href="#"><img src="images/featured-product02.jpg" alt="image"></a>
+											<div class="content">
+												<p class="title"><a href="#">Perfect Outfits</a></p>
+												<p class="price">$79.00</p>
+											</div> <!-- end .content -->
+										</div> <!-- end .featured-product -->
+										<div class="featured-product clearfix">
+											<a href="#"><img src="images/featured-product03.jpg" alt="image"></a>
+											<div class="content">
+												<p class="title"><a href="#">Perfect Hotel</a></p>
+												<p class="price">$390.00</p>
+											</div> <!-- end .content -->
+										</div> <!-- end .featured-product -->
+										<div class="featured-product clearfix">
+											<a href="#"><img src="images/featured-product04.jpg" alt="image"></a>
+											<div class="content">
+												<p class="title"><a href="#">Helicopter Tour Ticket</a></p>
+												<p class="price">$68.00</p>
+											</div> <!-- end .content -->
+										</div> <!-- end .featured-product -->
+									</div> <!-- end .sidebar-widget -->
+								</div> <!-- end .shop-sidebar -->
+							</div> <!-- end .col-md-4 -->
+							<div class="col-md-8">
+								<div class="row products">
+								@foreach($events as $event)
+									<div class="col-sm-6">
+										<div class="product">
+											<img src="{{ $event->image_url }}" alt="image" class="img-responsive">
+											<div class="overlay"></div>
+											<div class="content">
+												<h3><a href="#">{{ $event->name }}</a></h3>
+												<p>£{{$event->cost}}</p>
+											</div> <!-- end .content -->
+											<div class="product-label"><span>New</span></div>
+											<a href="{{ url('event', [$event->id]) }}" class="button">View</a>
+										</div> <!-- end .product -->
+									</div> <!-- end .col-sm-6 -->
+								@endforeach									
+								</div> <!-- end .row -->
+							</div> <!-- end .col-md-8 -->
 						</div> <!-- end .row -->
 						<div class="text-center">
-							<a href="#" id="blog-load-more" class="button">LOAD MORE</a>
+							<a href="" id="products-load-more" class="button">Load More</a>
 						</div> <!-- end .blog-load-more -->
 					</div> <!-- end .box -->
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
-
-@endsection
+		@endsection
