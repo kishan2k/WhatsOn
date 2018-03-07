@@ -38,12 +38,16 @@
 								</ul>
 								<a href="" target="_blank" class="link"><img src="{{asset('images/link.png') }}" alt="icon">themeforest.net/user/wecookcode/portfolio</a>
 								<div class="buttons">					
-									<button class="button dark snipcart-add-item" data-item-id="{{$event->id}}"
-													data-item-name="{{$event->name}}"
-													data-item-price="{{$event->cost}}"
-													data-item-weight="20"
-													data-item-url="{{url()->current()}}"
-													data-item-description="Some fresh bacon">BUY!</button>													
+								<button
+    class="snipcart-add-item"
+    data-item-id="2"
+    data-item-name="Bacon"
+    data-item-price="3.00"
+    data-item-weight="20"
+    data-item-url="http://myapp.com/products/bacon"
+    data-item-description="Some fresh bacon">
+    Buy bacon
+</button>												
 									<div class=" share-button">
 										<img src="{{asset('images/share.png') }}" alt="icon">Share
 										<div class="social">
