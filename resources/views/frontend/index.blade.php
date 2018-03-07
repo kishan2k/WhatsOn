@@ -9,7 +9,7 @@
 					<h1>Discover Coventry</h1>
 					<p class="lead">Find Events in your area.</p>
 
-					<form action="{{url()->full()}}/search" method="get" role="search">
+					<form action="{{url()->full()}}/search" method="post" role="search">
 					{!! csrf_field() !!}
 						<div class="row">
 							<div class="col-sm-4">

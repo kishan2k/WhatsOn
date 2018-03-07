@@ -37,13 +37,20 @@
 									<li><div class="rating">4.0</div><div class="number-of-ratings">( <span>3</span> )</div></li>
 								</ul>
 								<a href="" target="_blank" class="link"><img src="{{asset('images/link.png') }}" alt="icon">themeforest.net/user/wecookcode/portfolio</a>
-								<div class="buttons">																		
-									<div class="button dark share-button">
+								<div class="buttons">					
+									<button class="button dark" data-item-id="{{$event->id}}"
+													data-item-name="{{$event->name}}"
+													data-item-price="{{$event->cost}}"
+													data-item-weight="20"
+													data-item-url="{{url()->current()}}"
+													data-item-description="Some fresh bacon">BUY!</button>													
+									<div class=" share-button">
 										<img src="{{asset('images/share.png') }}" alt="icon">Share
 										<div class="social">
 											<a href="#"><img src="{{asset('images/facebook.png') }}" alt="facebook"></a>
 											<a href="#"><img src="{{asset('images/twitter.png') }}" alt="twitter"></a>
 											<a href="#"><img src="{{asset('images/google-plus.png') }}" alt="google plus"></a>
+											
 										</div> <!-- end .social -->
 									</div>
 								</div> <!-- end .buttons -->

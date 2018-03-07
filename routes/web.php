@@ -13,7 +13,7 @@ Route::resource('event', 'EventsController', ['only' => [
     'index', 'show'
 ]]);
 
-Route::get('search', 'EventsController@search');
+Route::post('search', 'EventsController@search');
 
 
 /*

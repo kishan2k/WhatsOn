@@ -32,8 +32,9 @@
 									</div> <!-- end .sidebar-widget -->
 									<div class="sidebar-widget">
 										<h5>Search Products</h5>
-										<form class="searchform">
-											<input type="text" placeholder="Type here ...">
+										<form class="searchform" action="{{url('/search')}}" method="post" role="search">
+										{{ csrf_field() }}
+											<input type="q" name="q" id="q" placeholder="Type here ..." value="{{$q}}" >
 											<button><i class="pe-7s-search"></i></button>
 										</form>
 									</div> <!-- end .sidebar-widget -->
@@ -64,28 +65,7 @@
 												<p class="title"><a href="#">Sweet Cupcakes</a></p>
 												<p class="price">$9.00</p>
 											</div> <!-- end .content -->
-										</div> <!-- end .featured-product -->
-										<div class="featured-product clearfix">
-											<a href="#"><img src="images/featured-product02.jpg" alt="image"></a>
-											<div class="content">
-												<p class="title"><a href="#">Perfect Outfits</a></p>
-												<p class="price">$79.00</p>
-											</div> <!-- end .content -->
-										</div> <!-- end .featured-product -->
-										<div class="featured-product clearfix">
-											<a href="#"><img src="images/featured-product03.jpg" alt="image"></a>
-											<div class="content">
-												<p class="title"><a href="#">Perfect Hotel</a></p>
-												<p class="price">$390.00</p>
-											</div> <!-- end .content -->
-										</div> <!-- end .featured-product -->
-										<div class="featured-product clearfix">
-											<a href="#"><img src="images/featured-product04.jpg" alt="image"></a>
-											<div class="content">
-												<p class="title"><a href="#">Helicopter Tour Ticket</a></p>
-												<p class="price">$68.00</p>
-											</div> <!-- end .content -->
-										</div> <!-- end .featured-product -->
+										</div> <!-- end .featured-product -->										
 									</div> <!-- end .sidebar-widget -->
 								</div> <!-- end .shop-sidebar -->
 							</div> <!-- end .col-md-4 -->

@@ -26,7 +26,7 @@
 <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet">
 <!-- Style.css -->
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
+<link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" rel="stylesheet" type="text/css" />
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
