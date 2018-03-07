@@ -38,7 +38,7 @@
 								</ul>
 								<a href="" target="_blank" class="link"><img src="{{asset('images/link.png') }}" alt="icon">themeforest.net/user/wecookcode/portfolio</a>
 								<div class="buttons">					
-									<button class="button dark" data-item-id="{{$event->id}}"
+									<button class="button dark snipcart-add-item" data-item-id="{{$event->id}}"
 													data-item-name="{{$event->name}}"
 													data-item-price="{{$event->cost}}"
 													data-item-weight="20"
