@@ -9,7 +9,7 @@ class CreateOrganizerTable extends Migration {
 	{
 		Schema::create('organizer', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('addressID');			
+			$table->unsignedInteger('addressID')->references('id')->on('address');			
 			$table->string('name');
 			$table->bigInteger('phone');
 			$table->string('email')->nullable();

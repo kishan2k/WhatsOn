@@ -4,6 +4,8 @@ namespace App\Models\Shared;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Shared\Subcategory;
+
 
 class Category extends Model 
 {
@@ -15,9 +17,9 @@ class Category extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function addSubcategory()
+    public function Subcategory()
     {
-        return $this->hasMany('CreateSubcategoryTable', 'id');
+        return $this->hasOne(Subcategory::class, 'subcategory');
     }
 
 }

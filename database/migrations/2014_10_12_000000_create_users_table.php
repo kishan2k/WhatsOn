@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
         Schema::create(config('access.table_names.users'), function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid');
+            $table->unsignedInteger('addressID')->references('id')->on('address');
+            $table->unsignedInteger('organizerID')->references('id')->on('organizer')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->unique();

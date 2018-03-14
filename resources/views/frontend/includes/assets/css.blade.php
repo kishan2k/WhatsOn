@@ -24,6 +24,12 @@
 <link href="{{ asset('css/jquery.nouislider.min.css') }}" rel="stylesheet">
 <!-- Bootstrap Select -->
 <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+
+
+
 <!-- Style.css -->
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" rel="stylesheet" type="text/css" />

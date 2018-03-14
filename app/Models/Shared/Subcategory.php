@@ -4,7 +4,7 @@ namespace App\Models\Shared;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\Shared\Category;
 class Subcategory extends Model 
 {
 
@@ -14,5 +14,10 @@ class Subcategory extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    public function Category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }

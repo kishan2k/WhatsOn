@@ -10,7 +10,7 @@ Route::get('lang/{lang}', 'LanguageController');
 
 
 Route::resource('event', 'EventsController', ['only' => [
-    'index', 'show'
+    'index', 'show', 'create', 'store'
 ]]);
 
 Route::post('search', 'EventsController@search');

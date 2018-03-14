@@ -10,7 +10,7 @@ class CreateCategoryTable extends Migration {
 		Schema::create('category', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
-			$table->string('subcategory')->nullable();
+			$table->unsignedInteger('subcategoryID')->references('id')->on('subcategory')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});
