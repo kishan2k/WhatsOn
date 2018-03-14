@@ -8,6 +8,10 @@
 // Switch between the included languages
 Route::get('lang/{lang}', 'LanguageController');
 
+Route::get('faq', function(){
+    return view ( 'frontend.pages.faq' );
+});
+
 
 Route::resource('event', 'EventsController', ['only' => [
     'index', 'show', 'create', 'store'
