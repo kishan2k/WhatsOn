@@ -10,9 +10,9 @@ class CategoryTableSeeder extends Seeder {
 		//DB::table('category')->delete();
 
 		// add_categories
-		CreateCategoryTable::create(array(
+		Category::create(array(
 				'name' => 'music',
-				'subcategory' => 1
+				'subcategoryID' => 1
 			));
 	}
 }

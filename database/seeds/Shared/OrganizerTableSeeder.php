@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Shared\Organizer;
 use Illuminate\Support\Facades\DB;
+use App\Models\Shared\Organizer;
+
 
 class OrganizerTableSeeder extends Seeder {
 
@@ -11,7 +12,7 @@ class OrganizerTableSeeder extends Seeder {
 		//DB::table('organizer')->delete();
 
 		// addOrganizer
-		CreateOrganizerTable::create(array(
+		Organizer::create(array(
 				'addressID' => 1,
 				'name' => 'Group 6F',
 				'phone' => 07777777777,

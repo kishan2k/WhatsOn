@@ -10,7 +10,7 @@ class SubcategoryTableSeeder extends Seeder {
 		//DB::table('subcategory')->delete();
 
 		// addSubcategory
-		CreateSubcategoryTable::create(array(
+		Subcategory::create(array(
 				'name' => 'RNB'
 			));
 	}

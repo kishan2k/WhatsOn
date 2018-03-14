@@ -11,7 +11,7 @@ class AddressTableSeeder extends Seeder {
 		//DB::table('address')->delete();
 
 		// addAddress
-		CreateAddressTable::create(array(
+		Address::create(array(
 				'name' => 'Hometown',
 				'address1' => 'Coventry',
 				'city' => 'Coventry',

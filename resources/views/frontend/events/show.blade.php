@@ -39,22 +39,19 @@
 								<a href="" target="_blank" class="link"><img src="{{asset('images/link.png') }}" alt="icon">themeforest.net/user/wecookcode/portfolio</a>
 								<div class="buttons">					
 								<button
-    class="snipcart-add-item"
-    data-item-id="2"
-    data-item-name="Bacon"
-    data-item-price="3.00"
-    data-item-weight="20"
-    data-item-url="http://myapp.com/products/bacon"
-    data-item-description="Some fresh bacon">
-    Buy bacon
-</button>												
-									<div class=" share-button">
-										<img src="{{asset('images/share.png') }}" alt="icon">Share
+									class="snipcart-add-item button"
+									data-item-id="{{$event->id}}"
+									data-item-name="{{$event->name}}"
+									data-item-price="{{$event->cost}}"
+									data-item-url="http://myapp.com/products/bacon"
+									data-item-description="{{$event->body}}">
+									Buy Now
+								</button>												
+									<div class=" share-button">										
 										<div class="social">
 											<a href="#"><img src="{{asset('images/facebook.png') }}" alt="facebook"></a>
 											<a href="#"><img src="{{asset('images/twitter.png') }}" alt="twitter"></a>
-											<a href="#"><img src="{{asset('images/google-plus.png') }}" alt="google plus"></a>
-											
+											<a href="#"><img src="{{asset('images/google-plus.png') }}" alt="google plus"></a>											
 										</div> <!-- end .social -->
 									</div>
 								</div> <!-- end .buttons -->
