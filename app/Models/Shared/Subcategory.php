@@ -15,9 +15,9 @@ class Subcategory extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function Category()
+    public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'id');
     }
 
 }

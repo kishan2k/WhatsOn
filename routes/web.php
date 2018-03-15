@@ -12,6 +12,8 @@ Route::get('faq', function(){
     return view ( 'frontend.pages.faq' );
 });
 
+Route::get('test', 'EventsController@test');
+
 
 Route::resource('event', 'EventsController', ['only' => [
     'index', 'show', 'create', 'store'

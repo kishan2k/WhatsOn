@@ -5,7 +5,12 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use App\Models\Auth\User;
 use App\Models\Shared\Events;
+use App\Models\Shared\Address;
+use App\Models\Shared\Category;
+use App\Models\Shared\Subcategory;
+use App\Models\Shared\Organizer;
 
 class EventsController extends Controller
 {
@@ -27,6 +32,16 @@ class EventsController extends Controller
         return view ( 'frontend.events.index' )->withMessage ( 'No Details found. Try to  again !' );
     
   }
+
+  public function test()
+  {
+    $data = Events::with(['category','category.subcategory', 'address','organizer'])->first();
+
+    dd($data);
+    //return $data;
+  }
+
+
 
   /**
    * Show the form for creating a new resource.

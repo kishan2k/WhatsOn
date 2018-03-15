@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
+use App\Models\Auth\User;
+use App\Models\Shared\Events;
+use App\Models\Shared\Address;
+use App\Models\Shared\Category;
+use App\Models\Shared\Subcategory;
+use App\Models\Shared\Organizer;
+
+
 class Events extends Model 
 {
 
@@ -18,19 +26,19 @@ class Events extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function addCategoryID()
+    public function category()
     {
-        return $this->hasMany('CreateCategoryTable', 'id');
+        return $this->hasOne(Category::class, 'id');
     }
 
-    public function addOrganizerID()
+    public function organizer()
     {
-        return $this->hasMany('CreateOrganizerTable', 'id');
+        return $this->hasOne(Organizer::class, 'id');
     }
 
-    public function AddEventAddress()
+    public function address()
     {
-        return $this->hasMany('CreateAddressTable', 'id');
+        return $this->hasOne(Address::class, 'id');
     }
 
 }

@@ -17,9 +17,9 @@ class Category extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function Subcategory()
+    public function subcategory()
     {
-        return $this->hasOne(Subcategory::class, 'subcategory');
+        return $this->hasOne(Subcategory::class, 'id');
     }
 
 }
