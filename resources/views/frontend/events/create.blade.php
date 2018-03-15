@@ -5,7 +5,7 @@
 @section('content')
 <div class="page-title" style="">
 			<div class="inner">
-				<h2>Add Listing</h2>
+				<h2>Add New Event</h2>
 				<p>Add your own event here</p>
 			</div> <!-- end .inner -->
 		</div> <!-- end .page-title -->
@@ -14,651 +14,186 @@
 			<div class="inner">
 				<div class="container">
 					<div class="box">
-						<form class="add-listing-form light-inputs">
+						<form class="add-listing-form light-inputs" METHOD="POST" action="{{ action('EventsController@store') }}">
+							{{csrf_field()}}
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">Event Name :</span>
-									<input type="text" name="name" id="name" placeholder="e.g Your listing name here ...">
+									<input type="text" name="eventname" id="eventame" placeholder="e.g Your Event name here ...">
 								</div> <!-- end .input-group -->
 							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Short Description :</span>
-									<input type="text" name="shortDesc" id="shortDesc" placeholder="e.g Conference">
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
+							
 							<div class="form-group">              
 							    <textarea placeholder="Description" rows="4" name="text" id="text"></textarea>
 							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Listing category :</span>
-									<select class="selectpicker" title="Choose one or more categories" data-live-search="true" multiple="multiple">
-										<option value="1">Option one</option>
-										<option value="2">Option two</option>
-										<option value="3">Option three</option>
-										<option value="4">Option four</option>
-                                    </select>                                    
-								</div> <!-- end .input-group -->
-								<span class="help-block">Visitors can filter their search by the categories and amenities they want - so make sure you choose them wisely and include all the relevant ones</span>
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Listing tags (optional) :</span>
-									<select class="selectpicker" title="Add tags or amenties" data-live-search="true" multiple="multiple">
-										<option value="1">Option one</option>
-										<option value="2">Option two</option>
-										<option value="3">Option three</option>
-										<option value="4">Option four</option>
-									</select>
-								</div> <!-- end .input-group -->
-								<span class="help-block">Visitors can filter their search by the amenities too, so make sure you include all the relevant ones.</span>
-                            </div> <!-- end .form-group -->
-                            <div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Event Start Date and Time :</span>
-									<input type="text" name="datetimestart" id="datetimestart" placeholder="e.g Your listing name here ...">
-								</div> <!-- end .input-group -->
-                            </div> <!-- end .form-group -->
-                            <div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Event End Date and Time :</span>
-									<input type="text" name="datetimeend " id="datetimeend" placeholder="e.g Your listing name here ...">
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Listing Region :</span>
-									<select class="selectpicker" data-live-search="true">	    	
-										<option value="" disabled selected>City of USA</option>
-										<option value="1">Option one</option>
-										<option value="2">Option two</option>
-										<option value="3">Option three</option>
-										<option value="4">Option four</option>
-									</select>
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
+							<div class="row">
+							<div class="col-sm-6">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">Category :</span>
+											<select class="selectpicker" data-live-search="true" name="category" id="category">	    	
+												<option value="" >Select One</option>
+												@foreach($categorys as $category)
+												<option value="{{$category->id}}">{{ $category->name}}</option>
+												@endforeach
+											</select>
+										</div> <!-- end .input-group -->
+									</div> <!-- end .form-group -->
+								</div>
 
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">Subcategory :</span>
+											<select class="selectpicker" data-live-search="true" name="subcategory" id="subcategory">	    	
+											<option value=""  >Select One</option>
+												@foreach($subcategorys as $subcategory)
+												<option value="{{$subcategory->id}}">{{ $subcategory->name}}</option>
+												@endforeach
+											</select>
+										</div> <!-- end .input-group -->
+									<span class="help-block">Not Required, but will help users find this event.</span>															
+										
+									</div> <!-- end .form-group -->			
+								</div>								
+							</div>																			                            							
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-6">
-										<div class='input-group date'>
+										<div class='input-group date' >
 										<span class="input-group-addon">Select Start :</span>
-											<input type='text' class="form-control" id="eventstart" name="eventstart" />											
+											<input class="form-control datetimepicker" type="text" value=""  name="eventstart" id="eventstart">   
+											               										
 										</div>
+								
 									</div>
 									<div class="col-sm-6">
 										<div class='input-group date'>
 										<span class="input-group-addon">Select End :</span>
-											<input type='text' class="form-control" id="eventend" name="eventend" />											
+											<input type='text'  class="form-control datetimepicker" id="eventend" name="eventend" />											
 										</div>
 									</div>
 								</div>
 							</div>
 
+
+             
+
+
+
+							</br>
+							<span class="help-block">Leave this blank if the you want to use your organization address.</span>
+							
 							<div class="form-group">
 								<div class="input-group">
-									<span class="input-group-addon">Location (optional) :</span>
-									<input type="text" placeholder="e.g 79 Leonard St , NewYork">
+									<span class="input-group-addon">Location Name :</span>
+									<input type="text" value="{{$user->organizer->address->name}}" id="name" name="name">
 								</div> <!-- end .input-group -->
-								<span class="help-block">Leave this blank if the location is not important.</span>
+								
 							</div> <!-- end .form-group -->
+							<div class="row">
+							
+								<div class="col-sm-6">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">Address Line 1 :</span>
+												<input type='text' class="form-control" value="{{$user->organizer->address->address1}}" id="address1" name="address1" />											
+											</div> <!-- end .input-group -->
+										</div> <!-- end .form-group -->
+								</div>
+								<div class="col-sm-6">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">Address Line 2 :</span>
+												<input type='text' class="form-control" value="{{$user->organizer->address->address2}}" id="address2" name="address2" />											
+											</div> <!-- end .input-group -->
+										</div> <!-- end .form-group -->
+								</div>													
+							</div>	
+							<div class="row">
+								<div class="col-sm-6">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">Address Line 3 :</span>
+												<input type='text' class="form-control" value="{{$user->organizer->address->address3}}" id="address3" name="address3" />											
+											</div> <!-- end .input-group -->
+										</div> <!-- end .form-group -->
+								</div>
+								<div class="col-sm-6">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">City :</span>
+												<input type='text' class="form-control" value="{{$user->organizer->address->city}}" id="city" name="city" />											
+											</div> <!-- end .input-group -->
+										</div> <!-- end .form-group -->
+								</div>													
+							</div>	
+							<div class="row">
+								<div class="col-sm-6">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">Postcode :</span>
+												<input type='text' class="form-control" value="{{$user->organizer->address->postcode}}" id="postcode" name="postcode" />											
+											</div> <!-- end .input-group -->
+										</div> <!-- end .form-group -->
+								</div>
+								<div class="col-sm-6">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">County :</span>
+												<input type='text' class="form-control" value="{{$user->organizer->address->county}}" id="county" name="county" />											
+											</div> <!-- end .input-group -->
+										</div> <!-- end .form-group -->
+								</div>													
+							</div>	
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">Region :</span>
+											<select class="selectpicker" data-live-search="true" id="region" name="region">	    	
+											<option value="{{ $user->organizer->address->region}}" selected>{{ $user->organizer->address->region}}</option>
+											<option value="England"  >England</option>
+											<option value="Wales"  >Wales</option>
+											<option value="Scotland">Scotland</option>
+											<option value="Ireland" >Ireland</option>
+											</select>
+										</div> <!-- end .input-group -->								
+									</div> <!-- end .form-group -->			
+								</div>	
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">Country :</span>
+											<select class="selectpicker" data-live-search="true" id="country" name="country">	    	
+												<option value="{{ $user->organizer->address->country}}" selected>{{ $user->organizer->address->country}}</option>
+												<option value="GB" >United Kingdom</option>
+											</select>
+										</div> <!-- end .input-group -->
+									</div> <!-- end .form-group -->
+								</div>							
+							</div>				
+							</br>	
 							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">PhoneNumber (optional) :</span>
-									<input type="text" placeholder="e.g +84 0939793979">
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Website (optional) :</span>
-									<input type="text" placeholder="e.g themeforest.net/user/wecookcode/portfolio">
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Facebook username (optional) :</span>
-									<input type="text" placeholder="e.g yournamecompany">
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Twitter username (optional) :</span>
-									<input type="text" placeholder="e.g @yournamecompany">
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Googleplus username (optional) :</span>
-									<input type="text" placeholder="e.g yournamecompany">
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group add_photo">
-							    <form action="http://explorecity.icookcode.net/demo/upload.php" method="post" enctype="multipart/form-data">	
-							    	<label for="file-upload" class="button">Add Photo for Gallery</label>
-								    <input type="file" name="file-upload" id="file-upload">
-								    <span>4 Photos ( 570px × 400px)</span>   								    
-								</form>
-							</div> <!-- end .text-left .add_photo -->
-							<div class="form-group photo_thumbnails">
-								<div class="photo_preview_box"></div>
-								<div class="photo_preview_box"></div>
-								<div class="photo_preview_box"></div>
-								<div class="photo_preview_box"></div>
-							</div> <!-- end .form-group .photo_thumbnails -->
-							<div class="form-group listing-hours">
 								<div class="row">
-									<div class="col-sm-4 operation-hours-button">
-										<button type="button" id="hours-of-operation" class="button">Add Hours of Operation</button>
-									</div> <!-- end .col-sm-4 -->
-									<div class="listing-hours-fields-wrapper">
-										<div class="col-sm-8 listing-hours-fields">
-											<div class="row">
-												<div class="col-sm-2 weekday-text">										
-													<span>Monday</span>
-												</div> <!-- end .col-sm-2 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">open :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">Close :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-											</div> <!-- end .row -->
-										</div> <!-- end .col-sm-8 -->
-										<div class="col-sm-8 col-sm-offset-4 listing-hours-fields">
-											<div class="row">
-												<div class="col-sm-2 weekday-text">										
-													<span>Tuesday</span>
-												</div> <!-- end .col-sm-2 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">open :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">Close :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-											</div> <!-- end .row -->
-										</div> <!-- end .col-sm-8 -->
-										<div class="col-sm-8 col-sm-offset-4 listing-hours-fields">
-											<div class="row">
-												<div class="col-sm-2 weekday-text">										
-													<span>Wednesday</span>
-												</div> <!-- end .col-sm-2 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">open :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">Close :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-											</div> <!-- end .row -->
-										</div> <!-- end .col-sm-8 -->
+									<div class="col-sm-6">
+										<div class='input-group '>
+										<span class="input-group-addon">Enter Cost : £</span>
+											<input type='text' class="form-control" id="cost" name="cost" />											
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class='input-group '>
+										<span class="input-group-addon">Enter Image Url :</span>
+											<input type='text' class="form-control" id="url" name="url" />											
+										</div>
+									</div>
+								</div>
+							</div>
+						
+							
 
-										<div class="col-sm-8 col-sm-offset-4 listing-hours-fields">
-											<div class="row">
-												<div class="col-sm-2 weekday-text">										
-													<span>Thursday</span>
-												</div> <!-- end .col-sm-2 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">open :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">Close :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-											</div> <!-- end .row -->
-										</div> <!-- end .col-sm-8 -->
-
-										<div class="col-sm-8 col-sm-offset-4 listing-hours-fields">
-											<div class="row">
-												<div class="col-sm-2 weekday-text">										
-													<span>Friday</span>
-												</div> <!-- end .col-sm-2 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">open :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">Close :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-											</div> <!-- end .row -->
-										</div> <!-- end .col-sm-8 -->
-
-										<div class="col-sm-8 col-sm-offset-4 listing-hours-fields">
-											<div class="row">
-												<div class="col-sm-2 weekday-text">										
-													<span>Saturday</span>
-												</div> <!-- end .col-sm-2 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">open :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">Close :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-											</div> <!-- end .row -->
-										</div> <!-- end .col-sm-8 -->
-
-										<div class="col-sm-8 col-sm-offset-4 listing-hours-fields">
-											<div class="row">
-												<div class="col-sm-2 weekday-text">										
-													<span>Sunday</span>
-												</div> <!-- end .col-sm-2 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">open :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-												<div class="col-sm-5">
-													<div class="input-group">
-														<span class="input-group-addon">Close :</span>
-														<select class="selectpicker" data-live-search="false">
-															<option value="" disabled selected></option>
-															<option value="1">12:00 am</option>
-															<option value="2">01:00 am</option>
-															<option value="3">02:00 am</option>
-															<option value="4">03:00 am</option>
-															<option value="4">04:00 am</option>
-															<option value="4">05:00 am</option>
-															<option value="4">06:00 am</option>
-															<option value="4">07:00 am</option>
-															<option value="4">08:00 am</option>
-															<option value="4">09:00 am</option>
-															<option value="4">10:00 am</option>
-															<option value="4">11:00 am</option>
-															<option value="4">12:00 pm</option>
-															<option value="2">01:00 pm</option>
-															<option value="3">02:00 pm</option>
-															<option value="4">03:00 pm</option>
-															<option value="4">04:00 pm</option>
-															<option value="4">05:00 pm</option>
-															<option value="4">06:00 pm</option>
-															<option value="4">07:00 pm</option>
-															<option value="4">08:00 pm</option>
-															<option value="4">09:00 pm</option>
-															<option value="4">10:00 pm</option>
-															<option value="4">11:00 pm</option>
-														</select>
-													</div> <!-- end .input-group -->
-												</div> <!-- end .col-sm-5 -->
-											</div> <!-- end .row -->
-										</div> <!-- end .col-sm-8 -->
-
-									</div> <!-- end .listing-hours-fields -->
-
-								</div> <!-- end .row -->
-
-							</div> <!-- end .form-group -->
+								
 							<div class="submit"><button type="submit" class="button">Add your Listing</button></div>
 						</form>
 					</div> <!-- end .box -->
@@ -669,47 +204,23 @@
 
 @endsection
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment-with-locales.min.js" integrity="sha256-wzBMoYcU9BZfRm6cQLFii4K5tkNptkER9p93W/vyCqo=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <script>
 $(function () {
-            $('#eventstart').datetimepicker({
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down",
-                    previous: "fa fa-arrow-left",
-                    next: "fa fa-arrow-right"
-                }
-            });
-            $('#eventend').datetimepicker({
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down",
-                    previous: "fa fa-arrow-left",
-                    next: "fa fa-arrow-right",
-                    useCurrent: false
-                }
-            });
-            $("#eventstart").on("dp.change", function (e) {
-                $('#eventstart').data("DateTimePicker").minDate(e.date);
-                setDate = e.date
-            });
-            $("#eventend").on("dp.change", function (e) {
-                $('#eventend').data("DateTimePicker").minDate(setDate);
-            });
+	$("#eventstart").flatpickr({
+		enableTime: true,
+		altInput: true,
+    	altFormat: "F j, Y  H:i ",
+		minDate: "today",
 
-
-            $( "#eventstart" ).datepicker({
-            format: 'dd-mm-yyyy'
-            });
-			$( "#eventend" ).datepicker({
-            format: 'dd-mm-yyyy'
-            });
-
-        });
+	});
+	$("#eventend").flatpickr({
+		enableTime: true,
+		altInput: true,
+    	altFormat: "F j, Y  H:i ",
+		minDate: "today",
+	});
+});
 </script>
 @endpush

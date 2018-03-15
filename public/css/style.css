@@ -393,7 +393,30 @@ h5 {
 /* ==========================================================================
    03. Forms
    ========================================================================== */
-input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]), select, textarea {
+
+   .flatpickr-current-month input.cur-year {
+	   background: transparent !important;
+	   -webkit-box-sizing: border-box !important;
+	   box-sizing: border-box !important;
+	   color: inherit !important;
+	   cursor: text !important;
+	   padding: 0 0 0 0.5ch !important;
+	   margin: 0 !important;
+	   display: inline-block !important;
+	   font-size: inherit !important;
+	   font-family: inherit !important;
+	   font-weight: 300 !important;
+	   line-height: inherit !important;
+	   height: auto !important;
+	   border: 0 !important;
+	   border-radius: 0 !important;
+	   vertical-align: initial !important;
+   }
+
+
+
+
+input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]):not(.flatpickr-calendar), select, textarea {
 	display: block;
 	border: none;
 	background: #fff;

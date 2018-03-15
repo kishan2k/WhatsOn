@@ -12,7 +12,8 @@ use App\Models\Auth\Traits\SendUserPasswordReset;
 use App\Models\Auth\Traits\Attribute\UserAttribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Auth\Traits\Relationship\UserRelationship;
-
+use App\Models\Shared\Organizer;
+use App\Models\Shared\Address;
 /**
  * Class User.
  */
@@ -64,4 +65,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = ['full_name'];
+
+    public function organizer()
+    {
+        return $this->hasOne(Organizer::class, 'id', 'organizerID');
+    }
+    public function address()
+    {
+        return $this->hasOne(Address::class, 'id', 'addressID');
+    }
 }

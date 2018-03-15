@@ -11,7 +11,9 @@ use App\Models\Shared\Address;
 use App\Models\Shared\Category;
 use App\Models\Shared\Subcategory;
 use App\Models\Shared\Organizer;
-
+use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
+use Carbon\Carbon;
 class EventsController extends Controller
 {
     /**
@@ -33,12 +35,15 @@ class EventsController extends Controller
     
   }
 
-  public function test()
+  public function getCountries()
   {
-    $data = Events::with(['category','category.subcategory', 'address','organizer'])->first();
-
-    dd($data);
-    //return $data;
+//    $data = Events::with(['category','category.subcategory', 'address','organizer'])->first();
+// Send an asynchronous request.
+    $client = new Client();  
+    $res = $client->request('GET', 'https://restcountries.eu/rest/v2/region/europe');
+    $data =  json_decode($res->getBody(),true);   
+    //dd($promise);
+    return $data;
   }
 
 
@@ -50,7 +55,14 @@ class EventsController extends Controller
    */
   public function create()
   {
-    return view('frontend.events.create');
+    $categorys = Category::get();
+    $subcategorys = Subcategory::get();
+    $id = Auth::id();
+    $user = User::find($id)->load('organizer','address', 'organizer.address');
+    //$organizer = Organizer::find($userid->organizerID);
+    // $data = $organizer->address;
+    //return $user;
+    return view('frontend.events.create', compact('categorys', 'subcategorys', 'user'));
   }
 
   /**
@@ -60,7 +72,48 @@ class EventsController extends Controller
    */
   public function store(Request $request)
   {
-    
+
+    $eventstart = Carbon::parse($request['eventstart']);
+    $eventend = Carbon::parse($request['eventend']);
+    $slug = str_slug($request['eventname'], "-");
+    $userId = Auth::user()->organizerID;
+
+
+
+    $address = Address::firstOrCreate(
+      [
+        'name' => $request->name, 
+        'address1' => $request->address1,
+        'address2' => $request->address2, 
+        'address3' => $request->address3, 
+        'city' => $request->city, 
+        'postcode' => $request->postcode, 
+        'country' => $request->county, 
+        'region' => $request->region, 
+        'country' => $request->country,         
+      ]);
+      
+      
+      $event = Events::firstOrCreate(
+        [
+          'categoryID' => $request->category,
+          'organizerID' => $userId,
+          'addressID' => $address->id,
+          'slug' => $slug,
+          'name' => $request->eventname,
+          'source' => Auth::user()->name,
+          'body' => $request->text,
+          'cost' => $request->cost,
+          'start' => $eventstart,
+          'end' => $eventstart,
+          'isVisible' => 1,
+          'isPublic' => 1,
+          'image_url' => $request->url,
+        ]);
+
+        return redirect()->action(
+          'EventsController@show', [$event->id]
+      );
   }
 
   /**

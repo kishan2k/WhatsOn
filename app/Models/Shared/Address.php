@@ -20,7 +20,7 @@ class Address extends Model
     public $timestamps = true;
 
     use SoftDeletes;
-
+    protected $fillable = ['name', 'address1', 'address2', 'address3', 'city', 'postcode', 'county',  'region', 'country'];
     protected $dates = ['deleted_at'];
 
 

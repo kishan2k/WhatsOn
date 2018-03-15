@@ -23,7 +23,7 @@ class Events extends Model
     use SoftDeletes;
     use Searchable;
 
-
+    protected $fillable = ['categoryID', 'organizerID', 'addressID', 'slug', 'name', 'source', 'body',  'cost', 'start', 'end', 'isVisible', 'isPublic', 'image_url'];
     protected $dates = ['deleted_at'];
 
     public function category()

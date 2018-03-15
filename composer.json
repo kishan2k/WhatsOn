@@ -15,6 +15,7 @@
         "davejamesmiller/laravel-breadcrumbs": "^4.1",
         "fideloper/proxy": "~3.3",
         "fzaninotto/faker": "^1.7",
+        "guzzlehttp/guzzle": "^6.3",
         "hieu-le/active": "^3.5",
         "laravel/framework": "5.5.*",
         "laravel/scout": "^4.0",
