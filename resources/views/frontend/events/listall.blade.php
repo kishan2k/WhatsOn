@@ -8,7 +8,7 @@
 
 		<div class="page-title" style="">
 			<div class="inner">
-				<h2>All Events"									
+				<h2>All Events									
 				</h2>
 
 			</div> <!-- end .inner -->
