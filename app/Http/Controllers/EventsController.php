@@ -161,6 +161,22 @@ class EventsController extends Controller
         // Return the error message if no keywords existed
         //return $error;
   }
+  public function all()
+  {    
+        
+            // Using the Laravel Scout syntax to search the products table.
+            $events = Events::get();
+
+            // If there are results return them, if none, return the error message.
+            //$events->count() ? $events : $error;
+
+            //dd($events);
+
+            return view('frontend.events.listall', compact('events'));
+     
+        // Return the error message if no keywords existed
+        //return $error;
+  }
 
 
   /**

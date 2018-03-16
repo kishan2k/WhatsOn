@@ -25,8 +25,8 @@
 								<h2>{{ $event->name}} <img src="{{asset('images/heading.png') }}" alt="icon"></h2>
 								<p>{{ $event->source}} </p>
 								<ul class="meta list-unstyled">
-									<li><img src="{{asset('images/location.png') }}" alt="icon">Leonard St , NewYork</li>
-									<li><img src="{{asset('images/phone.png') }}" alt="icon">+84 987654321</li>
+									<li><img src="{{asset('images/location.png') }}" alt="icon">{{ $event->address->name }}</li>
+									<li><img src="{{asset('images/phone.png') }}" alt="icon">0800 557 4106</li>
 									<li>
 										<div class="social">
 											<a href="#"><img src="{{asset('images/facebook.png') }}" alt="facebook"></a>
@@ -35,8 +35,7 @@
 										</div> <!-- end .social -->
 									</li>
 									<li><div class="rating">4.0</div><div class="number-of-ratings">( <span>3</span> )</div></li>
-								</ul>
-								<a href="" target="_blank" class="link"><img src="{{asset('images/link.png') }}" alt="icon">themeforest.net/user/wecookcode/portfolio</a>
+								</ul>								
 								<div class="buttons">					
 								<button
 									class="snipcart-add-item button"

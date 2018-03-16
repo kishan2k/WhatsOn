@@ -10,21 +10,11 @@
 			<div class="navigation clearfix">
 				<nav class="main-nav">
 					<ul class="list-unstyled">
-						<li class="menu-item-has-children">
-							<a href="list.html">Events</a>
-							<ul>
-								<li><a href="list.html">All Listings</a></li>
-								<li class="menu-item-has-children">
-									<a href="list.html">Food & Drink<i class="pe-7s-right-arrow"></i></a>
-									<ul>
-										<li><a href="list.html">Cafe’</a></li>
-										<li><a href="list.html">Restaurant</a></li>
-										<li><a href="list.html">Pizza Place</a></li>
-									</ul>
-								</li>
-								<li><a href="list.html">Entertainment</a></li>
-								<li><a href="list.html">Nightlife</a></li>
-							</ul>
+						<li class="menu-item">
+							<a href="{{ route('events.all') }}">All Events</a>
+						</li>
+						<li class="menu-item">
+							<a href="{{ route('events.faq') }}">FAQ</a>							
 						</li>
 						
 					</ul>
@@ -35,7 +25,7 @@
                 @auth
                 <div class="user">
 					
-					<a href="{{ route('frontend.user.account') }}"><div class="avatar"><img src="{{ asset('images/avatar04.jpg')}}" alt="avatar"></div></a>
+					<a href="{{ route('frontend.user.account') }}"><div class="avatar"><img src="http://via.placeholder.com/60x60" alt="avatar"></div></a>
 
 					{{ auth()->user()->name }}    <a href="{{route('frontend.auth.logout')}}"class="button ">Log Out</a>
 				</div>

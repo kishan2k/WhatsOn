@@ -12,17 +12,13 @@
 						<li class="menu-item-has-children">
 							<a href="list.html">Events</a>
 							<ul>
-								<li><a href="list.html">All Listings</a></li>
-								<li class="menu-item-has-children">
-									<a href="list.html">Food & Drink<i class="pe-7s-right-arrow"></i></a>
-									<ul>
-										<li><a href="list.html">Cafe’</a></li>
-										<li><a href="list.html">Restaurant</a></li>
-										<li><a href="list.html">Pizza Place</a></li>
-									</ul>
-								</li>
-								<li><a href="list.html">Entertainment</a></li>
-								<li><a href="list.html">Nightlife</a></li>
+								<li><a href="list.html">All Listings</a></li>								
+							</ul>
+						</li>
+						<li class="menu-item">
+							<a href="list.html">FAQ</a>
+							<ul>
+								<li><a href="list.html">All Listings</a></li>								
 							</ul>
 						</li>
 						

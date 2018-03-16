@@ -10,9 +10,9 @@ Route::get('lang/{lang}', 'LanguageController');
 
 Route::get('faq', function(){
     return view ( 'frontend.pages.faq' );
-});
-
-Route::get('test', 'EventsController@test');
+})->name('events.faq');
+Route::get('/events/all', 'EventsController@all')->name('events.all');
+//Route::get('test', 'EventsController@all');
 
 
 Route::resource('event', 'EventsController', ['only' => [
