@@ -6,7 +6,6 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "algolia/algoliasearch-client-php": "^1.25",
         "appstract/laravel-blade-directives": "^0.4.4",
         "arcanedev/log-viewer": "^4.4",
         "arcanedev/no-captcha": "^5.0",
